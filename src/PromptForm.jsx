@@ -40,6 +40,10 @@ function PromptForm() {
     }
   }, [url, appPassword, postType]);
 
+  useEffect(() => {
+    setIsNew(postId === 'new');
+  }, [postId]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
@@ -100,9 +104,7 @@ function PromptForm() {
             value={newTitle}
             onChange={e => setNewTitle(e.target.value)}
           />
-          useEffect(() => {
-  setIsNew(postId === 'new');
-}, [postId]);
+          
         </>
       )}
       <textarea
