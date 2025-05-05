@@ -16,7 +16,7 @@ function PromptForm() {
 
   useEffect(() => {
     if (url && appPassword) {
-      fetch(`/api/post-types`, {
+      fetch(`https://wpaibackend.onrender.com/api/post-types`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url, appPassword })
@@ -29,7 +29,7 @@ function PromptForm() {
 
   useEffect(() => {
     if (url && appPassword && postType) {
-      fetch(`/api/posts`, {
+      fetch(`https://wpaibackend.onrender.com/api/posts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url, appPassword, postType })
@@ -56,7 +56,7 @@ function PromptForm() {
       prompt
     };
 
-    const res = await fetch('/api/analyze-or-generate', {
+    const res = await fetch('https://wpaibackend.onrender.com/api/analyze-or-generate', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
