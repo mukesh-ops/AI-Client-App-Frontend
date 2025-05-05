@@ -67,60 +67,82 @@ function PromptForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <input
-        type="text"
-        placeholder="WordPress Site URL"
-        className="w-full border p-2"
-        value={url}
-        onChange={e => setUrl(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Application Password"
-        className="w-full border p-2"
-        value={appPassword}
-        onChange={e => setAppPassword(e.target.value)}
-      />
-      <select className="w-full border p-2" onChange={e => setPostType(e.target.value)}>
-        <option value="">Select Post Type</option>
-        {postTypes.map(type => (
-          <option key={type} value={type}>{type}</option>
-        ))}
-      </select>
-      <select className="w-full border p-2" onChange={e => setPostId(e.target.value)}>
-        <option value="">Select Post/Page</option>
-        <option value="new">Add New</option>
-        {posts.map(post => (
-          <option key={post.id} value={post.id}>{post.title}</option>
-        ))}
-      </select>
-      {postId === 'new' && (
-        <>
+    <div className="min-h-screen bg-gray-100 p-4">
+      <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-6">
+        <h1 className="text-2xl font-bold mb-4 text-center text-gray-800">AI-Powered WordPress Editor</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
-            placeholder="New Title"
-            className="w-full border p-2"
-            value={newTitle}
-            onChange={e => setNewTitle(e.target.value)}
+            placeholder="WordPress Site URL"
+            className="w-full border border-gray-300 rounded p-2"
+            value={url}
+            onChange={e => setUrl(e.target.value)}
           />
-          
-        </>
-      )}
-      <textarea
-        placeholder="Enter prompt/question here..."
-        className="w-full border p-2"
-        rows={4}
-        value={prompt}
-        onChange={e => setPrompt(e.target.value)}
-      ></textarea>
-      <button type="submit" className="bg-blue-600 text-white px-4 py-2">Submit</button>
+          <input
+            type="password"
+            placeholder="Application Password"
+            className="w-full border border-gray-300 rounded p-2"
+            value={appPassword}
+            onChange={e => setAppPassword(e.target.value)}
+          />
+          <select
+            className="w-full border border-gray-300 rounded p-2"
+            onChange={e => setPostType(e.target.value)}
+            value={postType}
+          >
+            <option value="">Select Post Type</option>
+            {postTypes.map(type => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
+          <select
+            className="w-full border border-gray-300 rounded p-2"
+            onChange={e => setPostId(e.target.value)}
+            value={postId}
+          >
+            <option value="">Select Post/Page</option>
+            <option value="new">Add New</option>
+            {posts.map(post => (
+              <option key={post.id} value={post.id}>{post.title}</option>
+            ))}
+          </select>
 
-      {contentResult && <ContentDisplay content={contentResult} />}
-    </form>
+          {postId === 'new' && (
+            <input
+              type="text"
+              placeholder="New Title"
+              className="w-full border border-gray-300 rounded p-2"
+              value={newTitle}
+              onChange={e => setNewTitle(e.target.value)}
+            />
+          )}
+
+          <textarea
+            placeholder="Enter prompt/question here..."
+            className="w-full border border-gray-300 rounded p-2"
+            rows={4}
+            value={prompt}
+            onChange={e => setPrompt(e.target.value)}
+          ></textarea>
+
+          <div className="flex justify-end">
+            <button
+              type="submit"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+
+        {contentResult && (
+          <div className="mt-6">
+            <ContentDisplay content={contentResult} />
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
 
 export default PromptForm;
-
-

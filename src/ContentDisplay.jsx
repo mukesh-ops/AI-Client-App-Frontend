@@ -3,9 +3,12 @@ import React from 'react';
 
 function ContentDisplay({ content }) {
   return (
-    <div className="mt-4 border p-4 bg-gray-100">
-      <h2 className="text-xl font-semibold mb-2">AI Response</h2>
-      <div dangerouslySetInnerHTML={{ __html: content }} />
+    <div className="mt-6 border border-gray-300 rounded-lg p-6 bg-white shadow-sm">
+      <h2 className="text-2xl font-bold text-gray-800 mb-4">AI Response</h2>
+      <div
+        className="prose max-w-none text-gray-700"
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
     </div>
   );
 }
